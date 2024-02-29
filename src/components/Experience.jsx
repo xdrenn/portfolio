@@ -7,8 +7,14 @@ export const Experience = () => {
     <>
       <OrbitControls />
       <ambientLight intensity={1} />
-      <Me />
       <Room />
+      <group
+        name="Empty"
+        position={[0.122, 0.26, -0.65]}
+        rotation={[-Math.PI, 0.345, -Math.PI]}
+      >
+        <Me />
+      </group>
     </>
   );
 };

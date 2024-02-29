@@ -16,11 +16,6 @@ export function Me(props) {
 
   const { actions } = useAnimations(typingAnimation, group);
 
-  useFrame((state) => {
-    const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
-    group.current.getObjectByName("Head").lookAt(target);
-  });
-
   useEffect(() => {
     actions["Typing"].reset().play();
   }, []);
