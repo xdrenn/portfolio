@@ -5,12 +5,11 @@ import { Me } from "./Me";
 export const Experience = () => {
   return (
     <>
-      <OrbitControls />
       <ambientLight intensity={1} />
       <Room />
       <group
         name="Empty"
-        position={[0.122, 0.26, -0.65]}
+        position={[0.127, 0.26, -0.65]}
         rotation={[-Math.PI, 0.345, -Math.PI]}
       >
         <Me />
