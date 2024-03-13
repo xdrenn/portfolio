@@ -43,13 +43,13 @@ export const Interface = () => {
 const AboutSection = () => {
   return (
     <Section>
-      <h1 className="text-6xl font-extrabold leading-snug">
+      <h1 className="text-white text-6xl font-extrabold leading-snug">
         Hi, I'm
         <br />
         <span className="text-white px-1 italic">Anastasia Vilmovskaya</span>
       </h1>
       <motion.p
-        className="text-lg text-gray-600 mt-4"
+        className="text-lg text-white mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -66,7 +66,7 @@ const AboutSection = () => {
         I'm developing web and mobile apps
       </motion.p>
       <motion.button
-        className={`bg-indigo-600 text-white py-4 px-8 
+        className={`bg-blue-600 text-white py-4 px-8 
       rounded-lg font-bold text-lg mt-16`}
         initial={{
           opacity: 0,
@@ -124,12 +124,12 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className="text-5xl font-bold">Skills</h2>
+        <h2 className="text-5xl text-white font-bold">Skills</h2>
         <div className=" mt-8 space-y-4">
           {skills.map((skill, index) => (
             <div className="w-64" key={index}>
               <motion.h3
-                className="text-xl font-bold text-gray-800"
+                className="text-xl font-bold text-white"
                 initial={{
                   opacity: 0,
                 }}
@@ -147,7 +147,7 @@ const SkillsSection = () => {
               </motion.h3>
               <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
                 <motion.div
-                  className="h-full bg-indigo-500 rounded-full "
+                  className="h-full bg-blue-600 rounded-full "
                   style={{ width: `${skill.level}%` }}
                   initial={{
                     scaleX: 0,
@@ -168,12 +168,12 @@ const SkillsSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-5xl font-bold mt-10">Languages</h2>
+          <h2 className="text-white text-5xl font-bold mt-10">Languages</h2>
           <div className=" mt-8 space-y-4">
             {languages.map((lng, index) => (
               <div className="w-64" key={index}>
                 <motion.h3
-                  className="text-xl font-bold text-gray-800"
+                  className="text-xl font-bold text-white"
                   initial={{
                     opacity: 0,
                   }}
@@ -255,7 +255,7 @@ const ContactSection = () => {
             id="message"
             className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
           />
-          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
+          <button className="bg-blue-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
             Submit
           </button>
         </form>

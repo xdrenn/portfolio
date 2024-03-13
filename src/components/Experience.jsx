@@ -6,11 +6,38 @@ import {
 import { motion } from "framer-motion-3d";
 import { Me } from "./Me";
 import { Room } from "./Room";
-import { useThree } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+import { animate, useMotionValue } from "framer-motion";
 
 export const Experience = (props) => {
   const { section, menuOpened } = props;
   const { viewport } = useThree();
+
+  const cameraPositionX = useMotionValue();
+  const cameraLookAtX = useMotionValue();
+
+  useEffect(() => {
+    animate(cameraPositionX, menuOpened ? -5 : 0, {
+      type: "spring",
+      mass: 5,
+      stiffness: 500,
+      damping: 50,
+      restDelta: 0.0001,
+    });
+    animate(cameraLookAtX, menuOpened ? 5 : 0, {
+      type: "spring",
+      mass: 5,
+      stiffness: 500,
+      damping: 50,
+      restDelta: 0.0001,
+    });
+  }, [menuOpened]);
+
+  useFrame((state) => {
+    state.camera.position.x = cameraPositionX.get();
+    state.camera.lookAt(cameraLookAtX.get(), 0, 0);
+  });
 
   return (
     <>
@@ -24,12 +51,13 @@ export const Experience = (props) => {
         }}
       >
         <Room section={section} />
+
         <group
           name="Empty"
           position={[0.127, 0.26, -0.65]}
           rotation={[-Math.PI, 0.345, -Math.PI]}
         >
-          <Me />
+          <Me animation={section === 0 ? "Typing" : "Standing"} />
         </group>
       </motion.group>
 
@@ -49,7 +77,7 @@ export const Experience = (props) => {
               transparent
               distort={0.4}
               speed={4}
-              color={"pink"}
+              color={"red"}
             />
           </mesh>
         </Float>
@@ -61,7 +89,7 @@ export const Experience = (props) => {
               transparent
               distort={1}
               speed={5}
-              color="blue"
+              color={"blue"}
             />
           </mesh>
         </Float>
@@ -73,7 +101,7 @@ export const Experience = (props) => {
               transparent
               factor={1}
               speed={5}
-              color={"purple"}
+              color={"yellow"}
             />
           </mesh>
         </Float>
