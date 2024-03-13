@@ -9,6 +9,7 @@ import { Room } from "./Room";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { animate, useMotionValue } from "framer-motion";
+import * as THREE from "three";
 
 export const Experience = (props) => {
   const { section, menuOpened } = props;
@@ -16,6 +17,15 @@ export const Experience = (props) => {
 
   const cameraPositionX = useMotionValue();
   const cameraLookAtX = useMotionValue();
+
+  const character = useRef();
+  const [characterAnimation, setCharacterAnimation] = useState("Typing");
+  useEffect(() => {
+    setCharacterAnimation("Falling");
+    setTimeout(() => {
+      setCharacterAnimation(section === 0 ? "Typing" : "Standing");
+    }, 600);
+  }, [section]);
 
   useEffect(() => {
     animate(cameraPositionX, menuOpened ? -5 : 0, {
@@ -37,10 +47,62 @@ export const Experience = (props) => {
   useFrame((state) => {
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
+
+    const position = new THREE.Vector3();
+    character.current.getWorldPosition(position);
+    console.log([position.x, position.y, position.z]);
+
+    const quaternion = new THREE.Quaternion();
+    character.current.getWorldQuaternion(quaternion);
+    const euler = new THREE.Euler();
+    euler.setFromQuaternion(quaternion, "XYZ");
+
+    console.log([euler.x, euler.y, euler.z]);
   });
 
   return (
     <>
+      <motion.group
+        position={[2.01, 0.229000000000000001, 2.631801948466054]}
+        rotation={[-3.141592653589793, 1.2053981633974482, 3.141592653589793]}
+        animate={"" + section}
+        transition={{
+          duration: 0.6,
+        }}
+        variants={{
+          0: {
+            scaleX: 0.9,
+            scaleY: 0.9,
+            scaleZ: 0.9,
+          },
+          1: {
+            y: -viewport.height + 0.5,
+            x: 0,
+            z: 7,
+            rotateX: 0,
+            rotateY: 0,
+            rotateZ: 0,
+          },
+          2: {
+            x: -2,
+            y: -viewport.height * 2 + 0.5,
+            z: 0,
+            rotateX: 0,
+            rotateY: Math.PI / 2,
+            rotateZ: 0,
+          },
+          3: {
+            y: -viewport.height * 3 + 1,
+            x: 0.3,
+            z: 8.5,
+            rotateX: 0,
+            rotateY: -Math.PI / 4,
+            rotateZ: 0,
+          },
+        }}
+      >
+        <Me animation={characterAnimation} />
+      </motion.group>
       <ambientLight intensity={1} />
       <motion.group
         position={[1.5, 2, 3]}
@@ -53,12 +115,10 @@ export const Experience = (props) => {
         <Room section={section} />
 
         <group
-          name="Empty"
+          ref={character}
           position={[0.127, 0.26, -0.65]}
           rotation={[-Math.PI, 0.345, -Math.PI]}
-        >
-          <Me animation={section === 0 ? "Typing" : "Standing"} />
-        </group>
+        ></group>
       </motion.group>
 
       <motion.group
