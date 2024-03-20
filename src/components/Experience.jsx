@@ -7,6 +7,7 @@ import { motion } from "framer-motion-3d";
 import { Me } from "./Me";
 import { Room } from "./Room";
 import { Projects } from "./Projects";
+import { Background } from "./Background";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
@@ -73,6 +74,7 @@ export const Experience = (props) => {
 
   return (
     <>
+      <Background />
       <motion.group
         position={[2.01, 0.229000000000000001, 2.631801948466054]}
         rotation={[-3.141592653589793, 1.2053981633974482, 3.141592653589793]}

@@ -1,7 +1,5 @@
 import { Image, Text } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { animate, useMotionValue } from "framer-motion";
-
+import { useThree } from "@react-three/fiber";
 import { motion } from "framer-motion-3d";
 import { atom, useAtom } from "jotai";
 import { useRef } from "react";
@@ -41,6 +39,7 @@ const Project = (props) => {
           url={project.image}
           toneMapped={false}
           position-y={0.3}
+          transparent={true}
         />
       </mesh>
       <Text
@@ -49,6 +48,7 @@ const Project = (props) => {
         anchorY={"top"}
         fontSize={0.3}
         position={[-1, -2, 0]}
+        color={"black"}
       >
         {project.title}
       </Text>
