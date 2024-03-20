@@ -6,22 +6,27 @@ import {
 import { motion } from "framer-motion-3d";
 import { Me } from "./Me";
 import { Room } from "./Room";
+import { Projects } from "./Projects";
 import { useThree, useFrame } from "@react-three/fiber";
+import { useScroll } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { animate, useMotionValue } from "framer-motion";
 import * as THREE from "three";
 
 export const Experience = (props) => {
-  const { section, menuOpened } = props;
+  const { menuOpened } = props;
   const { viewport } = useThree();
+  const data = useScroll();
+
+  const [section, setSection] = useState(0);
 
   const cameraPositionX = useMotionValue();
   const cameraLookAtX = useMotionValue();
 
   const character = useRef();
   const [characterAnimation, setCharacterAnimation] = useState("Typing");
+
   useEffect(() => {
-    setCharacterAnimation("Falling");
     setTimeout(() => {
       setCharacterAnimation(section === 0 ? "Typing" : "Standing");
     }, 600);
@@ -45,19 +50,25 @@ export const Experience = (props) => {
   }, [menuOpened]);
 
   useFrame((state) => {
+    let curSection = Math.floor(data.scroll.current * data.pages);
+
+    if (curSection > 3) {
+      curSection = 3;
+    }
+
+    if (curSection !== section) {
+      setSection(curSection);
+    }
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
     const position = new THREE.Vector3();
     character.current.getWorldPosition(position);
-    console.log([position.x, position.y, position.z]);
 
     const quaternion = new THREE.Quaternion();
     character.current.getWorldQuaternion(quaternion);
     const euler = new THREE.Euler();
     euler.setFromQuaternion(quaternion, "XYZ");
-
-    console.log([euler.x, euler.y, euler.z]);
   });
 
   return (
@@ -85,7 +96,7 @@ export const Experience = (props) => {
           },
           2: {
             x: -2,
-            y: -viewport.height * 2 + 0.5,
+            y: -viewport.height * 2 - 3.5,
             z: 0,
             rotateX: 0,
             rotateY: Math.PI / 2,
@@ -120,7 +131,6 @@ export const Experience = (props) => {
           rotation={[-Math.PI, 0.345, -Math.PI]}
         ></group>
       </motion.group>
-
       <motion.group
         position={[0, -1.5, -10]}
         animate={{
@@ -166,6 +176,7 @@ export const Experience = (props) => {
           </mesh>
         </Float>
       </motion.group>
+      <Projects />
     </>
   );
 };

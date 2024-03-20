@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useAtom } from "jotai";
+import { currentProjectAtom, projects } from "./Projects";
 
 const Section = (props) => {
   const { children } = props;
@@ -32,9 +34,7 @@ export const Interface = () => {
     <div className="flex flex-col items-center w-screen">
       <AboutSection />
       <SkillsSection />
-      <Section>
-        <h1>Projects</h1>
-      </Section>
+      <ProjectsSection />
       <ContactSection />
     </div>
   );
@@ -44,9 +44,9 @@ const AboutSection = () => {
   return (
     <Section>
       <h1 className="text-white text-6xl font-extrabold leading-snug">
-        Hi, I'm
+        Привет, я
         <br />
-        <span className="text-white px-1 italic">Anastasia Vilmovskaya</span>
+        <span className="text-white px-1 italic">Анастасия Вильмовская</span>
       </h1>
       <motion.p
         className="text-lg text-white mt-4"
@@ -63,7 +63,7 @@ const AboutSection = () => {
           delay: 1.5,
         }}
       >
-        I'm developing web and mobile apps
+        Я разрабатываю мобильные приложения и сайты
       </motion.p>
       <motion.button
         className={`bg-blue-600 text-white py-4 px-8 
@@ -81,7 +81,7 @@ const AboutSection = () => {
           delay: 2,
         }}
       >
-        Contact me
+        Напиши мне
       </motion.button>
     </Section>
   );
@@ -111,11 +111,11 @@ const skills = [
 ];
 const languages = [
   {
-    title: "ru Russian",
+    title: "🇷🇺 Русский",
     level: 100,
   },
   {
-    title: "🇺🇸 English",
+    title: "🇺🇸 Английский",
     level: 80,
   },
 ];
@@ -217,14 +217,46 @@ const SkillsSection = () => {
   );
 };
 
+const ProjectsSection = () => {
+  const [currentProject, setCurrentProject] = useAtom(currentProjectAtom);
+
+  const nextProject = () => {
+    setCurrentProject((currentProject + 1) % projects.length);
+  };
+
+  const previousProject = () => {
+    setCurrentProject((currentProject - 1 + projects.length) % projects.length);
+  };
+
+  return (
+    <Section>
+      <div className="flex w-full h-full gap-9 items-end justify-center">
+        <button
+          className="hover:text-blue-600 text-white transition-colors"
+          onClick={previousProject}
+        >
+          ← Предыдущий
+        </button>
+        <h2 className="text-5xl text-white font-bold">Проекты</h2>
+        <button
+          className="hover:text-blue-600 text-white transition-colors"
+          onClick={nextProject}
+        >
+          Следующий →
+        </button>
+      </div>
+    </Section>
+  );
+};
+
 const ContactSection = () => {
   return (
     <Section>
-      <h2 className="text-5xl font-bold">Contact me</h2>
+      <h2 className="text-5xl text-white font-bold">Связаться со мной</h2>
       <div className="mt-8 p-8 rounded-md bg-white w-96 max-w-full">
         <form>
           <label for="name" className="font-medium text-gray-900 block mb-1">
-            Name
+            Имя
           </label>
           <input
             type="text"
@@ -248,7 +280,7 @@ const ContactSection = () => {
             for="email"
             className="font-medium text-gray-900 block mb-1 mt-8"
           >
-            Message
+            Сообщение
           </label>
           <textarea
             name="message"
@@ -256,7 +288,7 @@ const ContactSection = () => {
             className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
           />
           <button className="bg-blue-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
-            Submit
+            Отправить
           </button>
         </form>
       </div>
