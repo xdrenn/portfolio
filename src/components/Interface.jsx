@@ -32,6 +32,10 @@ const Section = (props) => {
 export const Interface = () => {
   return (
     <div className="flex flex-col items-center w-screen">
+      <p className="bg-gradient-to-r from-pink-600 via-yellow-500 to-indigo-400 inline-block text-transparent bg-clip-text moving-text font-primaryRegular items-start justify-center">
+        Hi, thank you for visit this page. Hi, thank you for visit this page.
+        Hi, thank you for visit this page.
+      </p>
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
@@ -46,7 +50,7 @@ const AboutSection = () => {
       <h1 className="text-white text-6xl font-extrabold leading-snug">
         Привет, я
         <br />
-        <span className="text-white px-1 italic">Анастасия Вильмовская</span>
+        <span className="text-white ">Анастасия Вильмовская</span>
       </h1>
       <motion.p
         className="text-lg text-white mt-4"
@@ -90,7 +94,7 @@ const AboutSection = () => {
 const skills = [
   {
     title: "Threejs / React Three Fiber",
-    level: 60,
+    level: 40,
   },
   {
     title: "Kotlin/Java",
@@ -98,7 +102,7 @@ const skills = [
   },
   {
     title: "Ktor",
-    level: 80,
+    level: 70,
   },
   {
     title: "C++",
@@ -116,7 +120,7 @@ const languages = [
   },
   {
     title: "🇺🇸 Английский",
-    level: 80,
+    level: 70,
   },
 ];
 
@@ -124,7 +128,7 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className="text-5xl text-white font-bold">Skills</h2>
+        <h2 className="text-5xl text-white font-bold">Скиллы</h2>
         <div className=" mt-8 space-y-4">
           {skills.map((skill, index) => (
             <div className="w-64" key={index}>
@@ -168,7 +172,7 @@ const SkillsSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-white text-5xl font-bold mt-10">Languages</h2>
+          <h2 className="text-white text-5xl font-bold mt-10">Языки</h2>
           <div className=" mt-8 space-y-4">
             {languages.map((lng, index) => (
               <div className="w-64" key={index}>

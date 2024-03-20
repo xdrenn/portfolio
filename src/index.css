@@ -7,6 +7,30 @@
   height: 100vh;
 }
 
+@font-face {
+  font-family: "Pixely Sans";
+  src: url("/public/fonts/PixelifySans-Regular.ttf") format("truetype");
+}
+
+.moving-text:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .moving-text {
+    animation: marquee 15s linear infinite;
+  }
+}
+
 body {
   margin: 0;
   background-color: #faaca8;
