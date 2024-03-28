@@ -7,7 +7,7 @@ import * as THREE from "three";
 export const Background = () => {
   const material = useRef();
   const color = useRef({
-    color: "#c9e8fd",
+    color: "#19181a",
   });
   const data = useScroll();
 
@@ -21,19 +21,19 @@ export const Background = () => {
   useEffect(() => {
     tl.current = gsap.timeline();
     tl.current.to(color.current, {
-      color: "#ffc0d5",
+      color: "#79a5d4",
     });
     tl.current.to(color.current, {
-      color: "#9b96dd",
+      color: "#3f4070",
     });
     tl.current.to(color.current, {
-      color: "#ffd4c0",
+      color: "#9fc9fc",
     });
   }, []);
 
   return (
     <group>
-      <Sphere scale={[30, 30, 30]}>
+      <Sphere scale={[100, 100, 100]}>
         <meshBasicMaterial
           ref={material}
           side={THREE.BackSide}

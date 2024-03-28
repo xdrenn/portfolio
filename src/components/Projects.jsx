@@ -48,7 +48,7 @@ const Project = (props) => {
         anchorY={"top"}
         fontSize={0.3}
         position={[-1, -2, 0]}
-        color={"black"}
+        color={"white"}
       >
         {project.title}
       </Text>

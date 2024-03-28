@@ -125,8 +125,8 @@ export const Experience = (props) => {
           y: section === 0 ? 0 : -1,
         }}
       >
+        <plane />
         <Room section={section} />
-
         <group
           ref={character}
           position={[0.127, 0.26, -0.65]}
@@ -149,7 +149,7 @@ export const Experience = (props) => {
               transparent
               distort={0.4}
               speed={4}
-              color={"red"}
+              color={"pink"}
             />
           </mesh>
         </Float>
@@ -173,7 +173,7 @@ export const Experience = (props) => {
               transparent
               factor={1}
               speed={5}
-              color={"yellow"}
+              color={"purple"}
             />
           </mesh>
         </Float>

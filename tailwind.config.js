@@ -5,6 +5,8 @@ export default {
     extend: {
       fontFamily: {
         primaryRegular: ['"Pixely Sans"'],
+        secondRegular: ['"FutureFont"'],
+        thirdRegular: ['"Comfortaa"'],
       },
     },
   },

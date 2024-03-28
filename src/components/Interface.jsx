@@ -32,7 +32,7 @@ const Section = (props) => {
 export const Interface = () => {
   return (
     <div className="flex flex-col items-center w-screen">
-      <p className="whitespace-nowrap bg-gradient-to-r from-pink-600 via-yellow-500 to-indigo-400 inline-block text-transparent bg-clip-text moving-text font-primaryRegular items-start justify-center">
+      <p className="whitespace-nowrap bg-gradient-to-r from-pink-400 via-blue-400 to-indigo-400 inline-block text-transparent bg-clip-text moving-text font-primaryRegular items-start justify-center">
         thanks y'all for visiting this page. thanks y'all for visiting this
         page. thanks y'all for visiting this page. thanks y'all for visiting
         this page. thanks y'all for visiting this page. thanks y'all for
@@ -49,13 +49,15 @@ export const Interface = () => {
 const AboutSection = () => {
   return (
     <Section>
-      <h1 className="text-cyan-950 text-4xl font-extrabold leading-snug">
+      <h2 className="text-white text-2xl italic font-bold text-center font-thirdRegular leading-10">
         Привет, я
-        <br />
-        <span className="text-purple-400 italic">Анастасия Вильмовская</span>
+      </h2>
+      <h1 className="text-4xl font-secondRegular leading-10">
+        Анастасия Вильмовская
       </h1>
+      <br />
       <motion.p
-        className="text-lg font-bold text-cyan-950 mt-4"
+        className="text-lg font-bold text-white font-thirdRegular mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -69,11 +71,11 @@ const AboutSection = () => {
           delay: 1.5,
         }}
       >
-        Я разрабатываю мобильные приложения <br /> и сайты
+        Я разрабатываю сайты <br /> и мобильные приложения
       </motion.p>
       <motion.button
         className={`bg-blue-600 text-white py-4 px-8 
-      rounded-lg font-bold text-lg mt-16`}
+      rounded-lg font-bold font-thirdRegular text-lg mt-16`}
         initial={{
           opacity: 0,
           y: 25,
@@ -130,12 +132,14 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className="text-5xl text-cyan-950 font-bold">Скиллы</h2>
+        <h2 className="text-5xl text-white font-thirdRegular font-bold">
+          Скиллы
+        </h2>
         <div className=" mt-8 space-y-4">
           {skills.map((skill, index) => (
-            <div className="w-64" key={index}>
+            <div className="w-70" key={index}>
               <motion.h3
-                className="text-xl font-bold text-cyan-950"
+                className="text-xl font-bold font-thirdRegular text-white"
                 initial={{
                   opacity: 0,
                 }}
@@ -174,12 +178,14 @@ const SkillsSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-cyan-950 text-5xl font-bold mt-10">Языки</h2>
+          <h2 className="text-white text-5xl font-thirdRegular font-bold mt-10">
+            Языки
+          </h2>
           <div className=" mt-8 space-y-4">
             {languages.map((lng, index) => (
-              <div className="w-64" key={index}>
+              <div className="w-70" key={index}>
                 <motion.h3
-                  className="text-xl font-bold text-cyan-950"
+                  className="text-xl font-bold font-thirdRegular text-white"
                   initial={{
                     opacity: 0,
                   }}
@@ -197,7 +203,7 @@ const SkillsSection = () => {
                 </motion.h3>
                 <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
                   <motion.div
-                    className="h-full bg-indigo-500 rounded-full "
+                    className="h-full bg-blue-600 rounded-full "
                     style={{ width: `${lng.level}%` }}
                     initial={{
                       scaleX: 0,
@@ -238,14 +244,16 @@ const ProjectsSection = () => {
     <Section>
       <div className="flex w-full h-full gap-9 items-end justify-center">
         <button
-          className="hover:text-blue-600 text-cyan-950 transition-colors"
+          className="hover:text-purple-600 font-thirdRegular text-white transition-colors"
           onClick={previousProject}
         >
           ← Предыдущий
         </button>
-        <h2 className="text-5xl text-cyan-950 font-bold">Проекты</h2>
+        <h2 className="text-5xl text-white font-thirdRegular font-bold">
+          Проекты
+        </h2>
         <button
-          className="hover:text-blue-600 C transition-colors"
+          className="hover:text-purple-600 font-thirdRegular text-white transition-colors"
           onClick={nextProject}
         >
           Следующий →
@@ -258,21 +266,26 @@ const ProjectsSection = () => {
 const ContactSection = () => {
   return (
     <Section>
-      <h2 className="text-5xl text-cyan-950 font-bold">Связаться со мной</h2>
-      <div className="mt-8 p-8 rounded-md bg-white w-96 max-w-full">
+      <h2 className="text-4xl text-white font-thirdRegular font-bold">
+        Связаться со мной
+      </h2>
+      <div className="mt-8 mb-20 p-6 rounded-md bg-white w-96 max-w-full">
         <form>
-          <label for="name" className="font-medium text-gray-900 block mb-1">
+          <label
+            for="name"
+            className="font-thirdRegular text-gray-900 block mb-1"
+          >
             Имя
           </label>
           <input
             type="text"
             name="name"
             id="name"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
+            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
           />
           <label
             for="email"
-            className="font-medium text-gray-900 block mb-1 mt-8"
+            className="font-thirdRegular text-gray-900 block mb-1 mt-8"
           >
             Email
           </label>
@@ -280,20 +293,20 @@ const ContactSection = () => {
             type="email"
             name="email"
             id="email"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
+            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
           />
           <label
             for="email"
-            className="font-medium text-gray-900 block mb-1 mt-8"
+            className="font-thirdRegular text-gray-900 block mb-1 mt-8"
           >
             Сообщение
           </label>
           <textarea
             name="message"
             id="message"
-            className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
+            className="h-25 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
           />
-          <button className="bg-blue-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
+          <button className="bg-blue-600 text-white font-thirdRegular py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
             Отправить
           </button>
         </form>
