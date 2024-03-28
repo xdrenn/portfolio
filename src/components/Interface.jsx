@@ -30,7 +30,8 @@ const Section = (props) => {
   );
 };
 
-export const Interface = () => {
+export const Interface = (props) => {
+  const { setSection } = props;
   return (
     <div className="flex flex-col items-center w-screen">
       <p className="whitespace-nowrap bg-gradient-to-r from-pink-400 via-blue-400 to-indigo-400 inline-block text-transparent bg-clip-text moving-text font-primaryRegular items-start justify-center">
@@ -39,7 +40,7 @@ export const Interface = () => {
         this page. thanks y'all for visiting this page. thanks y'all for
         visiting this page.
       </p>
-      <AboutSection />
+      <AboutSection setSection={setSection} />
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
@@ -47,7 +48,8 @@ export const Interface = () => {
   );
 };
 
-const AboutSection = () => {
+const AboutSection = (props) => {
+  const { setSection } = props;
   return (
     <Section>
       <h2 className="text-white text-2xl italic font-bold text-center font-thirdRegular leading-10">
@@ -75,6 +77,7 @@ const AboutSection = () => {
         Я разрабатываю сайты <br /> и мобильные приложения
       </motion.p>
       <motion.button
+        onClick={() => setSection(3)}
         className={`bg-blue-600 text-white py-4 px-8 
       rounded-lg font-bold font-thirdRegular text-lg mt-16`}
         initial={{
