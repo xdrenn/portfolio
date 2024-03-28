@@ -4,13 +4,14 @@ import { currentProjectAtom, projects } from "./Projects";
 import { ValidationError, useForm } from "@formspree/react";
 
 const Section = (props) => {
-  const { children } = props;
+  const { children, mobileTop } = props;
 
   return (
     <motion.section
       className={`
   h-screen w-screen p-20 max-w-screnn
   flex flex-col items-start justify-center
+  ${mobileTop ? "justify-start md:justify-center" : "justify-center"}
   `}
       initial={{
         opacity: 0,
@@ -51,11 +52,11 @@ export const Interface = (props) => {
 const AboutSection = (props) => {
   const { setSection } = props;
   return (
-    <Section>
-      <h2 className="text-white text-2xl italic font-bold text-center font-thirdRegular leading-10">
+    <Section mobileTop>
+      <h2 className="text-white text-2xl  md:text-3xl italic font-bold text-center font-thirdRegular leading-10">
         Привет, я
       </h2>
-      <h1 className="text-4xl font-secondRegular leading-10">
+      <h1 className="text-4xl font-thirdRegular leading-10">
         Анастасия Вильмовская
       </h1>
       <br />
@@ -136,14 +137,14 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className="text-5xl text-white font-thirdRegular font-bold">
+        <h2 className="text-3xl md:text-5xl text-white font-thirdRegular font-bold">
           Скиллы
         </h2>
         <div className=" mt-8 space-y-4">
           {skills.map((skill, index) => (
-            <div className="w-70" key={index}>
+            <div className="w-full md:w-70" key={index}>
               <motion.h3
-                className="text-xl font-bold font-thirdRegular text-white"
+                className="text-lg md:text-xl font-bold font-thirdRegular text-white"
                 initial={{
                   opacity: 0,
                 }}
@@ -182,14 +183,14 @@ const SkillsSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-white text-5xl font-thirdRegular font-bold mt-10">
+          <h2 className="text-white text-3xl md:text-5xl font-thirdRegular font-bold mt-10">
             Языки
           </h2>
           <div className=" mt-8 space-y-4">
             {languages.map((lng, index) => (
-              <div className="w-70" key={index}>
+              <div className="w-full md:w-70" key={index}>
                 <motion.h3
-                  className="text-xl font-bold font-thirdRegular text-white"
+                  className="text-lg md:text-xl font-bold font-thirdRegular text-white"
                   initial={{
                     opacity: 0,
                   }}
@@ -246,21 +247,21 @@ const ProjectsSection = () => {
 
   return (
     <Section>
-      <div className="flex w-full h-full gap-9 items-end justify-center">
+      <div className="flex w-full h-full gap-8 items-end justify-center">
         <button
-          className="hover:text-purple-600 font-thirdRegular text-white transition-colors"
+          className="text-white hover:text-blue-600 text-xl md:text-3xl  font-thirdRegular transition-colors"
           onClick={previousProject}
         >
-          ← Предыдущий
+          ← Пред.
         </button>
-        <h2 className="text-5xl text-white font-thirdRegular font-bold">
+        <h2 className=" text-white text-3xl md:text-4xl font-thirdRegular font-bold">
           Проекты
         </h2>
         <button
-          className="hover:text-purple-600 font-thirdRegular text-white transition-colors"
+          className="text-white hover:text-blue-600 text-xl md:text-3xl font-thirdRegular transition-colors"
           onClick={nextProject}
         >
-          Следующий →
+          След. →
         </button>
       </div>
     </Section>

@@ -4,7 +4,7 @@ import {
   MeshWobbleMaterial,
 } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
-import { Me } from "./Me";
+import { Me } from "./Model";
 import { Room } from "./Room";
 import { Projects } from "./Projects";
 import { Background } from "./Background";
@@ -12,19 +12,23 @@ import { useThree, useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { animate, useMotionValue } from "framer-motion";
-import * as THREE from "three";
 
 export const Experience = (props) => {
   const { menuOpened } = props;
   const { viewport } = useThree();
   const data = useScroll();
 
+  const isMobile = window.innerWidth < 768;
+  const responsiveRatio = viewport.width / 12;
+  const roomScaleRatio = Math.max(0.5, Math.min(0.9 * responsiveRatio, 0.9));
+
   const [section, setSection] = useState(0);
 
   const cameraPositionX = useMotionValue();
   const cameraLookAtX = useMotionValue();
-
+  const characterContainerAboutRef = useRef();
   const character = useRef();
+
   const [characterAnimation, setCharacterAnimation] = useState("Typing");
 
   useEffect(() => {
@@ -60,57 +64,66 @@ export const Experience = (props) => {
     if (curSection !== section) {
       setSection(curSection);
     }
+
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
-    const position = new THREE.Vector3();
-    character.current.getWorldPosition(position);
-
-    const quaternion = new THREE.Quaternion();
-    character.current.getWorldQuaternion(quaternion);
-    const euler = new THREE.Euler();
-    euler.setFromQuaternion(quaternion, "XYZ");
+    if (section === 0) {
+      characterContainerAboutRef.current.getWorldPosition(
+        character.current.position
+      );
+    }
   });
 
   return (
     <>
       <Background />
       <motion.group
-        position={[2.01, 0.229000000000000001, 2.631801948466054]}
+        ref={character}
         rotation={[-3.141592653589793, 1.2053981633974482, 3.141592653589793]}
+        scale={[roomScaleRatio, roomScaleRatio, roomScaleRatio]}
         animate={"" + section}
         transition={{
           duration: 0.6,
         }}
         variants={{
           0: {
-            scaleX: 0.9,
-            scaleY: 0.9,
-            scaleZ: 0.9,
+            scaleX: roomScaleRatio,
+            scaleY: roomScaleRatio,
+            scaleZ: roomScaleRatio,
           },
           1: {
             y: -viewport.height + 0.5,
-            x: 0,
+            x: isMobile ? 0.3 : 0,
             z: 7,
             rotateX: 0,
-            rotateY: 0,
+            rotateY: isMobile ? -Math.PI / 2 : 0,
             rotateZ: 0,
+            scaleX: 1,
+            scaleY: 1,
+            scaleZ: 1,
           },
           2: {
-            x: -2,
-            y: -viewport.height * 2 - 3.5,
+            x: isMobile ? -1.4 : -2,
+            y: -viewport.height * 2 + 0.5,
             z: 0,
             rotateX: 0,
             rotateY: Math.PI / 2,
             rotateZ: 0,
+            scaleX: 1,
+            scaleY: 1,
+            scaleZ: 1,
           },
           3: {
             y: -viewport.height * 3 + 1,
-            x: 0.3,
+            x: 0.24,
             z: 8.5,
             rotateX: 0,
             rotateY: -Math.PI / 4,
             rotateZ: 0,
+            scaleX: 1,
+            scaleY: 1,
+            scaleZ: 1,
           },
         }}
       >
@@ -118,17 +131,23 @@ export const Experience = (props) => {
       </motion.group>
       <ambientLight intensity={1} />
       <motion.group
-        position={[1.5, 2, 3]}
-        scale={[0.9, 0.9, 0.9]}
+        position={[
+          isMobile ? 0 : 1.5 * roomScaleRatio,
+          isMobile ? -viewport.height / 6 : 2,
+          3,
+        ]}
+        scale={[roomScaleRatio, roomScaleRatio, roomScaleRatio]}
         rotation-y={-Math.PI / 4}
         animate={{
-          y: section === 0 ? 0 : -1,
+          y: isMobile ? -viewport.height / 6 : 0,
+        }}
+        transition={{
+          duration: 0.8,
         }}
       >
-        <plane />
         <Room section={section} />
         <group
-          ref={character}
+          ref={characterContainerAboutRef}
           position={[0.127, 0.26, -0.65]}
           rotation={[-Math.PI, 0.345, -Math.PI]}
         ></group>
