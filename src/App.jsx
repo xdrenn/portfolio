@@ -6,9 +6,11 @@ import { Experience } from "./components/Experience";
 import { Interface } from "./components/Interface";
 import { Menu } from "./components/Menu";
 import { ScrollManager } from "./components/ScrollManager";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 function App() {
   const [section, setSection] = useState(0);
+  const [started, setStarted] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
   useEffect(() => {
@@ -17,6 +19,7 @@ function App() {
 
   return (
     <>
+      <LoadingScreen started={started} setStarted={setStarted} />
       <MotionConfig
         transition={{
           type: "spring",
