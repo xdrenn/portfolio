@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { currentProjectAtom, projects } from "./Projects";
+import { ValidationError, useForm } from "@formspree/react";
 
 const Section = (props) => {
   const { children } = props;
@@ -264,52 +265,72 @@ const ProjectsSection = () => {
 };
 
 const ContactSection = () => {
+  const [state, handleSubmit] = useForm("myyrnwee");
   return (
     <Section>
       <h2 className="text-4xl text-white font-thirdRegular font-bold">
         Связаться со мной
       </h2>
       <div className="mt-8 mb-20 p-6 rounded-md bg-white w-96 max-w-full">
-        <form>
-          <label
-            for="name"
-            className="font-thirdRegular text-gray-900 block mb-1"
-          >
-            Имя
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
-          />
-          <label
-            for="email"
-            className="font-thirdRegular text-gray-900 block mb-1 mt-8"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
-          />
-          <label
-            for="email"
-            className="font-thirdRegular text-gray-900 block mb-1 mt-8"
-          >
-            Сообщение
-          </label>
-          <textarea
-            name="message"
-            id="message"
-            className="h-25 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
-          />
-          <button className="bg-blue-600 text-white font-thirdRegular py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
-            Отправить
-          </button>
-        </form>
+        {state.succeeded ? (
+          <p className="text-gray-900 font-thirdRegular text-center">
+            Спасибо за ваше сообщение!
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <label
+              for="name"
+              className="font-thirdRegular text-gray-900 block mb-1"
+            >
+              Имя
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
+            />
+            <label
+              for="email"
+              className="font-thirdRegular text-gray-900 block mb-1 mt-8"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
+            />
+            <ValidationError
+              className="mt-1 text-red-500"
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
+            <label
+              for="email"
+              className="font-thirdRegular text-gray-900 block mb-1 mt-8"
+            >
+              Сообщение
+            </label>
+            <textarea
+              name="message"
+              id="message"
+              className="h-25 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-600 p-3"
+            />
+            <ValidationError
+              className="mt-1 text-red-500"
+              errors={state.errors}
+            />
+            <button
+              disabled={state.submitting}
+              className="bg-blue-600 text-white font-thirdRegular py-4 px-8 rounded-lg font-bold text-lg mt-16 "
+            >
+              Отправить
+            </button>
+          </form>
+        )}
       </div>
     </Section>
   );
