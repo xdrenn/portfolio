@@ -8,9 +8,7 @@ import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 export function Me(props) {
   const group = useRef();
   const { animation } = props;
-  const { nodes, materials } = useGLTF(
-    "models/65dba7381277359fc9ea4724 (3).glb"
-  );
+  const { nodes, materials } = useGLTF("models/character.glb");
   const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
   const { animations: standingAnimation } = useFBX("animations/Standing.fbx");
   const { animations: fallingAnimation } = useFBX("animations/Falling.fbx");
@@ -112,4 +110,4 @@ export function Me(props) {
   );
 }
 
-useGLTF.preload("models/65dba7381277359fc9ea4724 (3).glb");
+useGLTF.preload("models/character.glb");

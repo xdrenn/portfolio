@@ -4,7 +4,7 @@ import {
   MeshWobbleMaterial,
 } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
-import { Me } from "./Model";
+import { Me } from "./Me";
 import { Room } from "./Room";
 import { Projects } from "./Projects";
 import { Background } from "./Background";
