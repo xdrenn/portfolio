@@ -10,7 +10,9 @@ import { motion } from "framer-motion-3d";
 export function Room(props) {
   const { section } = props;
   const group = useRef();
-  const { nodes } = useGLTF("models/night.glb");
+  const { nodes } = useGLTF(
+    "https://github.com/xdrenn/portfolio/raw/main/public/models/night.glb"
+  );
   const texture = useTexture("textures/baked.jpg");
   texture.flipY = false;
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -348,4 +350,6 @@ export function Room(props) {
   );
 }
 
-useGLTF.preload("models/night.glb");
+useGLTF.preload(
+  "https://github.com/xdrenn/portfolio/raw/main/public/models/night.glb"
+);
