@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+@font-face {
+  font-family: "Pixely Sans";
+  src: url("/fonts/PixelifySans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "FutureFont";
+  src: url("/fonts/good-future.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Comfortaa";
+  src: url("/fonts/Comfortaa-Regular.ttf") format("truetype");
+}
+
+h1 {
+  font-size: calc(20px + 18vh);
+  line-height: calc(20px + 20vh);
+  text-shadow: 0 0 5px #003cff, 0 0 15px #003cff, 0 0 20px #003cff,
+    0 0 40px #003cff, 0 0 60px #8c00ff, 0 0 10px #ae00ff, 0 0 98px #3700ff;
+  color: #a9ceff;
+  font-family: "Sacramento", cursive;
+  text-align: center;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
+}
+
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: 0 0 5px #003cff, 0 0 15px #003cff, 0 0 20px #003cff,
+      0 0 40px #003cff, 0 0 60px #8c00ff, 0 0 10px #ae00ff, 0 0 98px #3700ff;
+    color: #a9ceff;
+  }
+}
+
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #111;
+    text-shadow: none;
+  }
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: 0 0 5px #003cff, 0 0 15px #003cff, 0 0 20px #003cff,
+      0 0 40px #003cff, 0 0 60px #8c00ff, 0 0 10px #ae00ff, 0 0 98px #3700ff;
+    color: #a9ceff;
+  }
+}
+
+.moving-text:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .moving-text {
+    animation: marquee 15s linear infinite;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: black;
+}
