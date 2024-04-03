@@ -12,6 +12,7 @@ import { useThree, useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { animate, useMotionValue } from "framer-motion";
+import { AdaptivePixelRatio } from "./AdaptivePixelRatio";
 
 export const Experience = (props) => {
   const { menuOpened } = props;
@@ -77,6 +78,7 @@ export const Experience = (props) => {
 
   return (
     <>
+      <AdaptivePixelRatio />
       <Background />
       <motion.group
         ref={character}
@@ -148,7 +150,7 @@ export const Experience = (props) => {
         <Room section={section} />
         <group
           ref={characterContainerAboutRef}
-          position={[0.127, 0.26, -0.65]}
+          position={[0.127, 0.45, -0.65]}
           rotation={[-Math.PI, 0.345, -Math.PI]}
         ></group>
       </motion.group>

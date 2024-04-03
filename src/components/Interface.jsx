@@ -61,7 +61,7 @@ const AboutSection = (props) => {
       </h1>
       <br />
       <motion.p
-        className="text-lg font-bold text-white font-thirdRegular mt-4"
+        className="md:text-lg text-2xl font-bold md:text-white text-cyan-400 font-thirdRegular mt-4"
         initial={{
           opacity: 0,
           y: 25,

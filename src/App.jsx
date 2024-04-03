@@ -29,7 +29,11 @@ function App() {
           restDelta: 0.0001,
         }}
       >
-        <Canvas shadows camera={{ position: [0, 3, 10], fov: 42 }}>
+        <Canvas
+          performance={{ min: 0.5 }}
+          shadows
+          camera={{ position: [0, 3, 10], fov: 42 }}
+        >
           <ScrollControls pages={4} damping={0.1}>
             <ScrollManager section={section} onSectionChange={setSection} />
             <Scroll>
