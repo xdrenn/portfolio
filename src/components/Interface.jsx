@@ -61,7 +61,7 @@ const AboutSection = (props) => {
       </h1>
       <br />
       <motion.p
-        className="md:text-lg text-2xl font-bold md:text-white text-cyan-400 font-thirdRegular mt-4"
+        className="md:text-lg text-xl font-bold text-white text-center font-thirdRegular mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -75,7 +75,8 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        Я разрабатываю сайты <br /> и мобильные приложения
+        Я разрабатываю сайты <br className="text-blue-500" /> и мобильные
+        приложения
       </motion.p>
       <motion.button
         onClick={() => setSection(3)}

@@ -11,14 +11,12 @@ export function Me(props) {
   const { nodes, materials } = useGLTF("models/character.glb");
   const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
   const { animations: standingAnimation } = useFBX("animations/Standing.fbx");
-  const { animations: fallingAnimation } = useFBX("animations/Falling.fbx");
 
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";
-  fallingAnimation[0].name = "Falling";
 
   const { actions } = useAnimations(
-    [typingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    [typingAnimation[0], standingAnimation[0]],
     group
   );
 

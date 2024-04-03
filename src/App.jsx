@@ -30,7 +30,7 @@ function App() {
         }}
       >
         <Canvas
-          performance={{ min: 0.5 }}
+          performance={0.5}
           shadows
           camera={{ position: [0, 3, 10], fov: 42 }}
         >

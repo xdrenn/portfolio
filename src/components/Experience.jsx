@@ -12,7 +12,7 @@ import { useThree, useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { animate, useMotionValue } from "framer-motion";
-import { AdaptivePixelRatio } from "./AdaptivePixelRatio";
+import * as THREE from "three";
 
 export const Experience = (props) => {
   const { menuOpened } = props;
@@ -29,6 +29,7 @@ export const Experience = (props) => {
   const cameraLookAtX = useMotionValue();
   const characterContainerAboutRef = useRef();
   const character = useRef();
+  const sphere = new THREE.SphereGeometry(1, 28, 28);
 
   const [characterAnimation, setCharacterAnimation] = useState("Typing");
 
@@ -78,7 +79,6 @@ export const Experience = (props) => {
 
   return (
     <>
-      <AdaptivePixelRatio />
       <Background />
       <motion.group
         ref={character}
@@ -163,8 +163,7 @@ export const Experience = (props) => {
       >
         <directionalLight position={[-5, 3, 5]} intensity={0.4} />
         <Float>
-          <mesh position={[1, -3, -15]} scale={[2, 2, 2]}>
-            <sphereGeometry />
+          <mesh geometry={sphere} position={[1, -3, -15]} scale={[2, 2, 2]}>
             <MeshDistortMaterial
               opacity={0.8}
               transparent
@@ -175,8 +174,7 @@ export const Experience = (props) => {
           </mesh>
         </Float>
         <Float>
-          <mesh scale={[3, 3, 3]} position={[3, 1, -18]}>
-            <sphereGeometry />
+          <mesh geometry={sphere} scale={[3, 3, 3]} position={[3, 1, -18]}>
             <MeshDistortMaterial
               opacity={0.8}
               transparent
@@ -187,8 +185,11 @@ export const Experience = (props) => {
           </mesh>
         </Float>
         <Float>
-          <mesh scale={[1.4, 1.4, 1.4]} position={[-3, -1, -11]}>
-            <icosahedronGeometry />
+          <mesh
+            geometry={sphere}
+            scale={[1.4, 1.4, 1.4]}
+            position={[-3, -1, -11]}
+          >
             <MeshWobbleMaterial
               opacity={0.8}
               transparent
